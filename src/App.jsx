@@ -1,25 +1,35 @@
 import { useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import { booksApiUrl } from "./constants";
 
+import Search from "./components/Search";
+import BooksBlock from "./components/booksBlock";
+
 function App() {
+  const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
     (async () => {
-      console.log(booksApiUrl + `&key=${import.meta.env.VITE_API_KEY}`);
       const res = await fetch(
-        booksApiUrl + `&key=${import.meta.env.VITE_API_KEY}`
+        booksApiUrl +
+          `&q=${searchValue}` +
+          `&key=${import.meta.env.VITE_API_KEY}`
       );
-      console.log(res);
     })();
   }, []);
+
+  const handleSubmitForm = () => {
+    console.log(searchValue);
+  };
   return (
     <div className="wrapper">
       <header>
         <h1>Search for books</h1>
-        <div className="search">
-          <input className="search__field" type="text"></input>
-          <button className="search__button">Search</button>
-        </div>
+        <Search
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          submitForm={handleSubmitForm}
+        />
         {/* <img className="logo" src="../src/assets/images/fon.png" /> */}
         <div className="sort">
           <div className="sortField">
@@ -35,42 +45,9 @@ function App() {
       <div className="content">
         <p>Found 446 results</p>
         <div className="card__row">
-          <div className="card">
-            <img />
-
-            <div className="card__block-info">
-              <p>Computers</p>
-              <h4>Node.js. Путеводитель по технологиям</h4>
-              <p>Кирилл Сухов</p>
-            </div>
-          </div>
-          <div className="card">
-            <img />
-
-            <div className="card__block-info">
-              <p>Computers</p>
-              <h4>Node.js. Путеводитель по технологиям</h4>
-              <p>Кирилл Сухов</p>
-            </div>
-          </div>
-          <div className="card">
-            <img />
-
-            <div className="card__block-info">
-              <p>Computers</p>
-              <h4>Node.js. Путеводитель по технологиям</h4>
-              <p>Кирилл Сухов</p>
-            </div>
-          </div>
-          <div className="card">
-            <img />
-
-            <div className="card__block-info">
-              <p>Computers</p>
-              <h4>Node.js. Путеводитель по технологиям</h4>
-              <p>Кирилл Сухов</p>
-            </div>
-          </div>
+          <BooksBlock title="Node.js" name="Иван Васильевич" />
+          <BooksBlock />
+          <BooksBlock />
         </div>
       </div>
     </div>

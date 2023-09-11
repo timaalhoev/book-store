@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = ({ searchValue, setSearchValue, submitForm }) => {
+export const Search = ({ searchValue, setSearchValue, submitForm }) => {
   const handleChangeInputValue = (event) => {
     setSearchValue(event.target.value);
   };
@@ -30,5 +30,3 @@ const Search = ({ searchValue, setSearchValue, submitForm }) => {
     </div>
   );
 };
-
-export default Search;

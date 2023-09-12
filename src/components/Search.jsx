@@ -11,9 +11,7 @@ export const Search = ({ searchValue, setSearchValue, submitForm }) => {
         onChange={handleChangeInputValue}
         className="search__field"
         type="text"
-      >
-        {/* {value} */}
-      </input>
+      ></input>
       {searchValue && (
         <svg
           onClick={() => setSearchValue("")}

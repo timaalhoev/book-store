@@ -13,8 +13,6 @@ export const Book = () => {
     }
   }, [book_id]);
 
-  console.log(book);
-
   if (isLoading) {
     return "Loading...";
   }

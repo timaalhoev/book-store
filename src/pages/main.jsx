@@ -6,11 +6,17 @@ import { Header } from "../components/Header";
 
 export const Main = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [category, setCategory] = useState("all");
+  const [sort, setSort] = useState("relevance");
   const { getBooks, books, totalBooks, isLoading, error } = useGetBooks();
 
   const handleSubmitForm = (event) => {
     event?.preventDefault();
-    getBooks(searchValue);
+    getBooks({
+      searchValue: searchValue,
+      category: category,
+      orderBy: sort,
+    });
     setSearchValue("");
   };
 
@@ -18,12 +24,20 @@ export const Main = () => {
     <>
       <Header
         searchValue={searchValue}
+        category={category}
+        sort={sort}
         setSearchValue={setSearchValue}
+        setCategory={setCategory}
+        setSort={setSort}
         handleSubmitForm={handleSubmitForm}
       />
       <div className="wrapper">
         <div className="content">
-          {totalBooks && <p>Found {totalBooks} results</p>}
+          {totalBooks ? (
+            <p>Найдено {totalBooks} книг</p>
+          ) : (
+            <p>Ничего не найдено</p>
+          )}
           {isLoading
             ? "Loading..."
             : Array.isArray(books) &&

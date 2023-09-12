@@ -7,16 +7,18 @@ export const useGetBooks = () => {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleFetch = async (searchValue) => {
+  const handleFetch = async ({ searchValue, orderBy, category }) => {
     setPending(true);
     try {
       const res = await fetch(
         booksApiUrl +
           `&q=${searchValue}` +
+          `+subject${category}` +
+          `&orderBy=${orderBy}` +
           `&key=${import.meta.env.VITE_API_KEY}`
       ).then((data) => data.json());
 
-      const books = res.items.map((item) => {
+      const books = res?.items?.map((item) => {
         return {
           id: item?.id,
           title: item?.volumeInfo?.title,

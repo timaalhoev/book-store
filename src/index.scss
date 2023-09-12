@@ -59,7 +59,7 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    position: relative;
+    width: 484px;
     .icon {
       width: 82px;
       height: 72px;
@@ -100,20 +100,6 @@ header {
       font-size: 24px;
       padding: 4px 10px;
       cursor: pointer;
-    }
-  }
-
-  .sort {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-
-    .sortField {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 10px;
     }
   }
 }
@@ -167,4 +153,11 @@ h4 {
     flex-direction: column;
     align-items: center;
   }
+}
+
+select {
+  color: #000;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
 }

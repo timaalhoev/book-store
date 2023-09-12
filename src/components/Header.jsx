@@ -1,7 +1,16 @@
 import React from "react";
 import { Search } from "./Search";
+import { Controls } from "./Controls";
 
-export const Header = ({ searchValue, setSearchValue, handleSubmitForm }) => {
+export const Header = ({
+  searchValue,
+  category,
+  sort,
+  setSearchValue,
+  setCategory,
+  setSort,
+  handleSubmitForm,
+}) => {
   return (
     <header>
       <form onSubmit={handleSubmitForm}>
@@ -11,25 +20,13 @@ export const Header = ({ searchValue, setSearchValue, handleSubmitForm }) => {
           setSearchValue={setSearchValue}
           submitForm={handleSubmitForm}
         />
-        <div className="sort">
-          <div className="sortField">
-            <label>Categories</label>
-            <input></input>
-          </div>
-          <div className="sortField">
-            <label>Sorting by</label>
-            <input></input>
-          </div>
-        </div>
+        <Controls
+          category={category}
+          sort={sort}
+          setCategory={setCategory}
+          setSort={setSort}
+        />
       </form>
     </header>
   );
 };
-
-{
-  /* <Header */
-}
-//     searchValue={searchValue}
-//     setSearchValue={setSearchValue}
-//     handleSubmitForm={handleSubmitForm}
-//   />
